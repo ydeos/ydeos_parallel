@@ -71,12 +71,12 @@ def __sample_atomic_func(case: Tuple, p_1, p_2, p_3="Z"):
 #    # create new process
 if __name__ == "__main__":
 
-    l1 = ['a', 'b', 'c', 'd']
-    l2 = ['1', '2', '3', '4']
-    l3 = ['+', '-', '*', '/']
+    list_1 = ['a', 'b', 'c', 'd']
+    list_2 = ['1', '2', '3', '4']
+    list_3 = ['+', '-', '*', '/']
 
     parallel_run(iter_func=__sample_iter_func,
                  atomic_func=__sample_atomic_func,
-                 iter_args=[l1, l2, l3],
+                 iter_args=[list_1, list_2, list_3],
                  args=['lorem', "ipsum", "dolor"],
                  nb_cores=number_of_cores())

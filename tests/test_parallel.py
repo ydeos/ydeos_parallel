@@ -6,31 +6,27 @@ r"""Tests for the parallel.py module"""
 from ydeos_parallel.parallel import chunks, nb_per_process
 
 
+def _ten_by_four_chunks_verification(chunks_):
+    assert len(chunks_) == 4
+    assert chunks_[0] == [0, 1, 2]
+    assert chunks_[1] == [3, 4, 5]
+    assert chunks_[2] == [6, 7, 8]
+    assert chunks_[3] == [9]
+
+
 def test_chunks():
     r"""test chunks happy path"""
     input_list = range(10)
-    c = chunks(input_list, nb_items=3)
-    assert len(c) == 4
-    assert c[0] == [0, 1, 2]
-    assert c[1] == [3, 4, 5]
-    assert c[2] == [6, 7, 8]
-    assert c[3] == [9]
+    chunks_ = chunks(input_list, nb_items=3)
+    _ten_by_four_chunks_verification(chunks_)
 
     input_list = list(range(10))
-    c = chunks(input_list, nb_items=3)
-    assert len(c) == 4
-    assert c[0] == [0, 1, 2]
-    assert c[1] == [3, 4, 5]
-    assert c[2] == [6, 7, 8]
-    assert c[3] == [9]
+    chunks_ = chunks(input_list, nb_items=3)
+    _ten_by_four_chunks_verification(chunks_)
 
     input_list = tuple(range(10))
-    c = chunks(input_list, nb_items=3)
-    assert len(c) == 4
-    assert c[0] == [0, 1, 2]
-    assert c[1] == [3, 4, 5]
-    assert c[2] == [6, 7, 8]
-    assert c[3] == [9]
+    chunks_ = chunks(input_list, nb_items=3)
+    _ten_by_four_chunks_verification(chunks_)
 
 
 def test_nb_per_process():
