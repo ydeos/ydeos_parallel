@@ -27,11 +27,12 @@ def __sample_iter_func(atomic_func: Callable,
                                                   len(cases))
         print(msg)
         time_0 = time.time()
-        try:
-            atomic_func(case, *other_args)
-        except Exception:  # Intentionally wide except clause
-            msg = f"Something went wrong while running {atomic_func.__name__}"
-            print(msg)
+        # try:
+        #     atomic_func(case, *other_args)
+        # except Exception:  # Intentionally wide except clause
+        #     msg = f"Something went wrong while running {atomic_func.__name__}"
+        #     print(msg)
+        atomic_func(case, *other_args)
         time_1 = time.time()
 
         msg = "%s took %.4f minutes" % (str(case), (time_1 - time_0) / 60)
