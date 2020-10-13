@@ -29,7 +29,7 @@ def __sample_iter_func(atomic_func: Callable,
         time_0 = time.time()
         try:
             atomic_func(case, *other_args)
-        except:  # Intentionally wide except clause
+        except Exception:  # Intentionally wide except clause
             msg = f"Something went wrong while running {atomic_func.__name__}"
             print(msg)
         time_1 = time.time()

@@ -16,16 +16,18 @@ def _ten_by_four_chunks_verification(chunks_):
 
 def test_chunks():
     r"""test chunks happy path"""
-    input_list = range(10)
-    chunks_ = chunks(input_list, nb_items=3)
+    input_range = range(10)
+    nb = 3
+
+    chunks_ = chunks(input_range, nb_items=nb)
     _ten_by_four_chunks_verification(chunks_)
 
-    input_list = list(range(10))
-    chunks_ = chunks(input_list, nb_items=3)
+    input_range = list(input_range)
+    chunks_ = chunks(input_range, nb_items=nb)
     _ten_by_four_chunks_verification(chunks_)
 
-    input_list = tuple(range(10))
-    chunks_ = chunks(input_list, nb_items=3)
+    input_range = tuple(input_range)
+    chunks_ = chunks(input_range, nb_items=nb)
     _ten_by_four_chunks_verification(chunks_)
 
 
