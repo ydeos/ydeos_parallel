@@ -9,7 +9,7 @@ from ydeos_parallel.parallel import chunks, nb_per_process
 def test_chunks():
     r"""test chunks happy path"""
     input_list = range(10)
-    c = chunks(input_list, n=3)
+    c = chunks(input_list, nb_items=3)
     assert len(c) == 4
     assert c[0] == [0, 1, 2]
     assert c[1] == [3, 4, 5]
@@ -17,7 +17,7 @@ def test_chunks():
     assert c[3] == [9]
 
     input_list = list(range(10))
-    c = chunks(input_list, n=3)
+    c = chunks(input_list, nb_items=3)
     assert len(c) == 4
     assert c[0] == [0, 1, 2]
     assert c[1] == [3, 4, 5]
@@ -25,7 +25,7 @@ def test_chunks():
     assert c[3] == [9]
 
     input_list = tuple(range(10))
-    c = chunks(input_list, n=3)
+    c = chunks(input_list, nb_items=3)
     assert len(c) == 4
     assert c[0] == [0, 1, 2]
     assert c[1] == [3, 4, 5]
