@@ -57,7 +57,7 @@ def test_physical_memory():
 def test_processor():
     r"""Test we get a string description"""
     assert isinstance(processor(), str)
-    assert len(processor()) > 0
+    assert processor()  # The description should contain something
 
 
 def test_number_of_cpus():
@@ -83,7 +83,8 @@ def __sample_iter_func(atomic_func: Callable,
                        other_args: List,
                        process_nb: int = -1):
     r"""Sample iteration function."""
-    for j, case in enumerate(cases):
+    print(f"This is process {process_nb}")
+    for _, case in enumerate(cases):
         atomic_func(case, *other_args)
 
 
