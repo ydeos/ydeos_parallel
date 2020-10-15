@@ -15,27 +15,22 @@ logging.basicConfig(level=logging.DEBUG,
                            ':: %(lineno)3d :: %(message)s')
 
 
+ATOMIC_FUNC_SLEEP_TIME = 10
+
+
 def __sample_iter_func(atomic_func: Callable,
                        cases: List,
                        other_args: List,
                        process_nb: int = -1):
     r"""Sample iteration function."""
     for j, case in enumerate(cases):
-        msg = "%s [process %i - %i out of %i]" % (str(case),
-                                                  process_nb,
-                                                  j + 1,
-                                                  len(cases))
+        msg = f"{case} [process {process_nb} - {j + 1} out of {len(cases)}]"
         print(msg)
         time_0 = time.time()
-        # try:
-        #     atomic_func(case, *other_args)
-        # except Exception:  # Intentionally wide except clause
-        #     msg = f"Something went wrong while running {atomic_func.__name__}"
-        #     print(msg)
         atomic_func(case, *other_args)
         time_1 = time.time()
 
-        msg = "%s took %.4f minutes" % (str(case), (time_1 - time_0) / 60)
+        msg = f"{case} took {time_1 - time_0:.8f} seconds"
         print(msg)
 
 
@@ -60,6 +55,7 @@ def __sample_atomic_func(case: Tuple, p_1, p_2, p_3="Z"):
     my_list.append(p_2)
     my_list.append(p_3)
     print(''.join(my_list))
+    time.sleep(ATOMIC_FUNC_SLEEP_TIME)
 
 
 # Whenever we use the multiprocessing library to start a new process,
@@ -75,9 +71,11 @@ if __name__ == "__main__":
     list_1 = ['a', 'b', 'c', 'd']
     list_2 = ['1', '2', '3', '4']
     list_3 = ['+', '-', '*', '/']
-
+    t_0 = time.time()
     parallel_run(iter_func=__sample_iter_func,
                  atomic_func=__sample_atomic_func,
                  iter_args=[list_1, list_2, list_3],
                  args=['lorem', "ipsum", "dolor"],
                  nb_cores=number_of_cores())
+    t_1 = time.time()
+    print(f"Total clock time : {t_1 - t_0} s")
