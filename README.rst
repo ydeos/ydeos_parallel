@@ -11,4 +11,33 @@ ydeos_parallel
     :target: https://coveralls.io/github/ydeos/ydeos_parallel?branch=main
 
 
-Code parallelization
+**ydeos_parallel** is a simple parallel code execution library in Python 3.
+
+It works by creating separate Python processes on available CPU cores for similar but independent tasks. No MPI, no interprocess communication ... very simple!
+
+Install
+-------
+
+.. code-block:: shell
+
+   git clone https://github.com/ydeos/ydeos_parallel
+   cd ydeos_parallel
+   python setup.py install
+
+
+Examples
+--------
+
+See the examples_ folder.
+
+
+.. _examples: https://github.com/ydeos/ydeos_parallel/tree/main/examples
+
+
+Contribute
+----------
+
+Please open an issue if you find a bug or if you come up with ideas about how to improve the project.
+
+Then: fork, feature branch and open a pull request. Feel free to contribute!
+
